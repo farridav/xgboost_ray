@@ -272,7 +272,8 @@ def _start_rabit_tracker(num_workers: int):
 
     env = {"DMLC_NUM_WORKER": num_workers}
 
-    rabit_tracker = _RabitTracker(host, num_workers)
+    # Name arguments, to ensure compatability with newer xgboost versions
+    rabit_tracker = _RabitTracker(host_ip=host, n_workers=num_workers)
 
     # Get tracker Host + IP
     env.update(rabit_tracker.worker_envs())
